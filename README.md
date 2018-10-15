@@ -10,27 +10,27 @@
  - Добавлен сертификат от Let's Encrypt для https
 
 ## Как проверить работоспособность:
- - Перейти по ссылке `https://35.205.239.224.sslip.io/`
+ - Перейти по ссылке https://35.205.239.224.sslip.io/
  
 ## Подключение к someinternalhost через bastion.
-`ssh -t -i gce-key -A dimon@35.205.239.224 'ssh 10.166.0.2'`
+```ssh -t -i gce-key -A dimon@35.205.239.224 'ssh 10.166.0.2'```
 
 ## Подключение к someinternalhost через bastion при помощи alias
-`
-Host someinternalhost\n
-    HostName 35.205.239.224\n
-    User dimon
-    IdentityFile ~/.ssh/gce-key
-    ForwardAgent yes
-    RequestTTY force
+```
+Host someinternalhost
+    HostName 35.205.239.224    
+    User dimon    
+    IdentityFile ~/.ssh/gce-key    
+    ForwardAgent yes    
+    RequestTTY force    
     RemoteCommand ssh 10.166.0.2
-`
+```
 ## PR checklist
  - [X] Выставил label с номером домашнего задания
  - [X] Выставил label с темой домашнего задания
 
 ## Данные для подключения
-`
+```
 bastion_IP = 35.205.239.224
 someinternalhost_IP = 10.166.0.2
-`
+```
