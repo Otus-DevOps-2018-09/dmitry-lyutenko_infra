@@ -1,30 +1,16 @@
-# Выполнено ДЗ №3
+# Выполнено ДЗ №4
 
  - [X] Основное ДЗ
- - [X] Задание со *
+ - [X] Дополнительные задания
 
 ## В процессе сделано:
- - Настроены 2 виртуальные машины. Одна из которых имеет доступ по ssh из внешней сети, а вторая нет.
- - Развернут Pritunl для удаленного доступа к ресурсам нашей сети в GCP
- - Настроен firewall в GCP для подключения к VPN-серверу
- - Добавлен сертификат от Let's Encrypt для https
-
-## Как проверить работоспособность:
- - Перейти по ссылке `https://35.205.239.224.sslip.io/`
+ - На рабочей машине развернуты gcloud/gsutil
+ - Настроена виртуальная машина при помощи gcloud. В ней в ручном режиме развернуто приложение.
+ - Созданы скрипты для полуавтоматического развертывания (deploy.sh  install_mongodb.sh  install_ruby.sh)
+ - Настроена виртуальная машина при помощи gcloud и startup-скрипта, который  автоматически разворачивает приложение.
+ - При помощи gcloud создано рпзрешающее правило на firewall для прохождения трафика
  
-## Подключение к someinternalhost через bastion.
-`ssh -t -i gce-key -A dimon@35.205.239.224 'ssh 10.166.0.2'`
 
-## Подключение к someinternalhost через bastion при помощи alias
-`
-Host someinternalhost\n
-    HostName 35.205.239.224\n
-    User dimon
-    IdentityFile ~/.ssh/gce-key
-    ForwardAgent yes
-    RequestTTY force
-    RemoteCommand ssh 10.166.0.2
-`
 ## PR checklist
  - [X] Выставил label с номером домашнего задания
  - [X] Выставил label с темой домашнего задания
@@ -33,4 +19,28 @@ Host someinternalhost\n
 `
 bastion_IP = 35.205.239.224
 someinternalhost_IP = 10.166.0.2
+
+testapp_IP = 35.198.167.169
+testapp_port = 9292
+`
+# Команда для создания виртуальной машины и развертывания приложения (скрипт в Google Storage)
+`
+gcloud compute instances create reddit-app \
+       --boot-disk-size=10GB \
+       --image-family=ubuntu-1604-lts \
+       --image-project=ubuntu-os-cloud \
+       --machine-type=g1-small \
+       --tags=puma-server \
+       --restart-on-failure \
+       --metadata startup-script-url=gs://otus-homework/startup-script.sh
+`
+# Команда для создания правила firewall
+`
+gcloud compute firewall-rules create default-puma-server \
+       --network default \
+       --direction in \
+       --source-ranges 0.0.0.0/0 \
+       --rules tcp:9292 \
+       --target-tags puma-server \
+       --action allow
 `
