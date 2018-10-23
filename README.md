@@ -4,6 +4,7 @@
  - [X] Дополнительные задания
 
 ## В процессе сделано:
+
  - На рабочей машине развернуты gcloud/gsutil
  - Настроена виртуальная машина при помощи gcloud. В ней в ручном режиме развернуто приложение.
  - Созданы скрипты для полуавтоматического развертывания (deploy.sh  install_mongodb.sh  install_ruby.sh)
@@ -16,7 +17,7 @@
  - [X] Выставил label с темой домашнего задания
 
 ## Данные для подключения
-`
+```
 bastion_IP = 35.205.239.224
 someinternalhost_IP = 10.166.0.2
 
@@ -44,3 +45,6 @@ gcloud compute firewall-rules create default-puma-server \
        --target-tags puma-server \
        --action allow
 `
+
+
+
