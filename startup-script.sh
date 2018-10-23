@@ -13,8 +13,8 @@ sudo apt-get update
 sudo apt-get install -y ruby-full ruby-bundler build-essential mongodb-org
 
 # enable autostart and starting MongoDB service
-systemctl enable mongod.service 
-systemctl start mongod.service 
+sudo systemctl enable mongod.service 
+sudo systemctl start mongod.service 
 
 # download app source
 git clone -b monolith https://github.com/express42/reddit.git
