@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # get updates
-sudo apt-get update
+sudo apt update
 
 # install rudy and etc
-sudo apt-get install -y ruby-full ruby-bundler build-essential
+sudo apt install -y ruby-full ruby-bundler build-essential
