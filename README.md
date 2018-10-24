@@ -21,7 +21,7 @@
 bastion_IP = 35.205.239.224
 someinternalhost_IP = 10.166.0.2
 
-testapp_IP = 35.198.167.169
+testapp_IP = 35.233.75.27
 testapp_port = 9292
 `
 # Команда для создания виртуальной машины и развертывания приложения (скрипт в Google Storage)
