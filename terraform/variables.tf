@@ -4,7 +4,7 @@ variable project {
 
 variable region {
   description = "Region"
-  default = "europe-west1"
+  default     = "europe-west1"
 }
 
 variable zone {
@@ -20,5 +20,5 @@ variable public_key_path {
 }
 
 variable disk_image {
- description = "Disk image"
+  description = "Disk image"
 }
