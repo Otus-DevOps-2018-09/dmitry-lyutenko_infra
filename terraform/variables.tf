@@ -22,3 +22,13 @@ variable public_key_path {
 variable disk_image {
   description = "Disk image"
 }
+
+variable "instace_count" {
+  description = "Number of instances in cluster"
+  default     = 2
+}
+
+variable "app_port" {
+  default     = 9292
+  description = "Firewall and health check port"
+}

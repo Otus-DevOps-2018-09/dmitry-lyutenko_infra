@@ -13,7 +13,8 @@ resource "google_compute_project_metadata" "default" {
 }
 
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  count        = "${var.instace_count}"
+  name         = "reddit-app-${count.index+1}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
@@ -59,6 +60,6 @@ resource "google_compute_firewall" "firewall-puma" {
 
   allow {
     protocol = "tcp"
-    ports    = ["9292"]
+    ports    = ["${var.app_port}"]
   }
 }
