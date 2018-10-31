@@ -25,7 +25,7 @@ variable disk_image {
 
 variable "instace_count" {
   description = "Number of instances in cluster"
-  default     = 2
+  default     = 1
 }
 
 variable "app_port" {
