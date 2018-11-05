@@ -1,4 +1,3 @@
-
 resource "google_compute_instance" "app" {
   name         = "reddit-app"
   machine_type = "g1-small"
@@ -13,7 +12,8 @@ resource "google_compute_instance" "app" {
   }
 
   network_interface {
-    network = "default"
+    #network = "${var.app-network}"
+    subnetwork = "${var.app-subnetwork}"
 
     access_config = {
       nat_ip = "${google_compute_address.app_ip.address}"

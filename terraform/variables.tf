@@ -42,3 +42,21 @@ variable db_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
+
+variable "app-network" {
+  description = "App network"
+  default     = "my-network"
+}
+
+variable "app-subnetwork-name" {
+  default = "app-subnetwork"
+}
+
+variable "app-subnetwork-ip-ranges" {
+  default = "10.11.12.0/24"
+}
+
+variable "source-ip-range" {
+  description = "Allowed connetion from"
+  default     = ["0.0.0.0/0"]
+}

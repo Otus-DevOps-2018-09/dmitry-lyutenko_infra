@@ -10,3 +10,12 @@ variable db_disk_image {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
+
+variable "app-network" {
+  description = "Network"
+  default     = "default"
+}
+
+variable "app-subnetwork" {
+  default = "app-subnetwork"
+}

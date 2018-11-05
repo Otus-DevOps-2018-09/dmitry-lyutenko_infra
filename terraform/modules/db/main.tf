@@ -12,7 +12,8 @@ resource "google_compute_instance" "db" {
   }
 
   network_interface {
-    network       = "default"
+    #network       = "${var.app-network}"
+    subnetwork    = "${var.app-subnetwork}"
     access_config = {}
   }
 
