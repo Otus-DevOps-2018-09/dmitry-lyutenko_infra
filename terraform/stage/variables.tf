@@ -56,7 +56,7 @@ variable "app-subnetwork-ip-ranges" {
   default = "10.11.12.0/24"
 }
 
-variable "source-ip-range" {
+variable "source-ip-ranges" {
   description = "Allowed connetion from"
   default     = ["0.0.0.0/0"]
 }
