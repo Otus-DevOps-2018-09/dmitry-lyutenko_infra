@@ -5,9 +5,9 @@ provider "google" {
 }
 
 module "storage-bucket" {
-  source = "SweetOps/storage-bucket/google"
+  source  = "SweetOps/storage-bucket/google"
   version = "0.1.1"
-  name = ["otus-hw-terraform-1", "otus-hw-terraform-2"]
+  name    = ["otus-hw-tf-stage", "otus-hw-tf-prod"]
 }
 
 output "storage-bucket-url" {

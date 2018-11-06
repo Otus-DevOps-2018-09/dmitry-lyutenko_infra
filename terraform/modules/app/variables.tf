@@ -6,6 +6,10 @@ variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
 
+variable private_key_path {
+  description = "Path to the public key used for ssh access"
+}
+
 variable "app_port" {
   default     = 9292
   description = "Firewall and health check port"
@@ -23,4 +27,9 @@ variable "app-network" {
 
 variable "app-subnetwork" {
   default = "app-subnetwork"
+}
+
+variable "db-address" {
+  description = "Database ip address"
+  default = "127.0.0.1"
 }
