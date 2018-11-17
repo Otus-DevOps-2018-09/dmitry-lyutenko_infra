@@ -19,10 +19,6 @@ variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
 
-variable disk_image {
-  description = "Disk image"
-}
-
 variable "instace_count" {
   description = "Number of instances in cluster"
   default     = 1
@@ -33,14 +29,20 @@ variable "app_port" {
   description = "Firewall and health check port"
 }
 
+variable disk_image {
+  description = "Disk image"
+}
+
 variable app_disk_image {
   description = "Disk image for reddit app"
-  default     = "reddit-app-base"
+  #default     = "reddit-app-base"
+  default = "${var.disk_image}"
 }
 
 variable db_disk_image {
   description = "Disk image for reddit app"
-  default     = "reddit-db-base"
+  #default     = "reddit-db-base"
+  default = "${var.disk_image}"
 }
 
 variable "app-network" {
