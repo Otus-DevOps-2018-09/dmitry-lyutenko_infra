@@ -1,3 +1,8 @@
+variable "instance_name" {
+  description = "instance name"
+  default = "reddit-app"
+}
+
 variable zone {
   default = "europe-west1-d"
 }

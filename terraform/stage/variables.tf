@@ -35,14 +35,12 @@ variable disk_image {
 
 variable app_disk_image {
   description = "Disk image for reddit app"
-  #default     = "reddit-app-base"
-  default = "${var.disk_image}"
+  default     = "reddit-app-base"
 }
 
 variable db_disk_image {
   description = "Disk image for reddit app"
-  #default     = "reddit-db-base"
-  default = "${var.disk_image}"
+  default     = "reddit-db-base"
 }
 
 variable "app-network" {

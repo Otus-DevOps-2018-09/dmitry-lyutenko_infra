@@ -5,7 +5,6 @@
   tags: db-tag
   vars:
     mongo_bind_ip: 0.0.0.0
-    db_host:       0.0.0.0
   tasks:
     - name: Change mongo config file      
       template:
@@ -21,17 +20,10 @@
 - name: Configure App
   hosts: app
   become: true
-  tags: db-tag
+  tags: app-tag
   vars:
     db_host:       0.0.0.0
   tasks:
-    - name: Change mongo config file      
-      template:
-        src: templates/mongod.conf.j2
-        dest: /etc/mongod.conf
-        mode: 0644      
-      notify: restart mongod
-
     - name: Enable puma
       template:
         src: templates/db_config.j2
@@ -49,7 +41,7 @@
 
 
 - name: Deploy App
-  hosts: all
+  hosts: app
   tags: deploy-tag
   tasks:
     - name:  Fetch the latest version of application code
