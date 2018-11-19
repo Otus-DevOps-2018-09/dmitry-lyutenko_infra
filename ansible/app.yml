@@ -6,7 +6,7 @@
     db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
   tasks:
     
-    - debug: msg="db_host={{ db_host }}"
+    - debug: msg="{{ db_host }}"
     - name: Coping config
       template:
         src: templates/db_config.j2
