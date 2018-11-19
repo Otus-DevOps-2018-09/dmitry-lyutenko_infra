@@ -1,20 +1,5 @@
-provider "google" {
-  version = "1.4.0"
-  project = "${var.project}"
-  region  = "${var.region}"
-}
-
-resource "google_compute_project_metadata" "default" {
-  count = 1
-
-  metadata {
-    ssh-keys = "appuser${count.index+1}:${file("${var.public_key_path}")}"
-  }
-}
-
 resource "google_compute_instance" "app" {
-  count        = "${var.instace_count}"
-  name         = "reddit-app-${count.index+1}"
+  name         = "reddit-app"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
@@ -22,19 +7,23 @@ resource "google_compute_instance" "app" {
   # boot HDD
   boot_disk {
     initialize_params {
-      image = "${var.disk_image}"
+      image = "${var.app_disk_image}"
     }
   }
 
   network_interface {
-    network       = "default"
-    access_config = {}
+    #network = "${var.app-network}"
+    subnetwork = "${var.app-subnetwork}"
+
+    access_config = {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   metadata {
     ssh-keys = "appuser:${file("${var.public_key_path}")}"
   }
-
+  
   connection {
     type        = "ssh"
     user        = "appuser"
@@ -43,18 +32,25 @@ resource "google_compute_instance" "app" {
   }
 
   provisioner "file" {
-    source      = "files/puma.service"
+    source      = "../modules/app/files/puma.service"
     destination = "/tmp/puma.service"
   }
 
   provisioner "remote-exec" {
-    script = "files/deploy.sh"
+    inline = [
+      "echo 'export DATABASE_URL=${var.db-address}' > /home/appuser/.bash_profile",
+      "chown appuser:appuser /home/appuser/.bash_profile"
+    ]
   }
+  provisioner "remote-exec" {
+    script = "../modules/app/files/deploy.sh"
+  }
+
 }
 
 resource "google_compute_firewall" "firewall-puma" {
-  name          = "allow-puma-default"
-  network       = "default"
+  name          = "allow-puma-${var.app-network}"
+  network       = "${var.app-network}"
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["reddit-app"]
 
@@ -62,4 +58,8 @@ resource "google_compute_firewall" "firewall-puma" {
     protocol = "tcp"
     ports    = ["${var.app_port}"]
   }
+}
+
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
 }
