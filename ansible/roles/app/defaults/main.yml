@@ -1,4 +1,5 @@
 ---
 # defaults file for app
-# db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
-db_host: 127.0.0.1
+db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
+#db_host: 127.0.0.200
+env: local

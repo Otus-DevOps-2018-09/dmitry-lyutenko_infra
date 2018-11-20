@@ -19,4 +19,4 @@
   handlers:
     - name: reload puma
       become: true
-      service: name=mongod state=restarted
+      service: name=puma state=restarted

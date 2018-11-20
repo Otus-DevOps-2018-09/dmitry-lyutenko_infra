@@ -2,8 +2,6 @@
 - name: Configure App  
   hosts: app
   become: true
-  vars:
-    db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
   
   roles:
     - app
