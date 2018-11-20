@@ -24,12 +24,13 @@
   vars:
     db_host:       0.0.0.0
   tasks:
-    - name: Enable puma
+    - name: copy config
       template:
         src: templates/db_config.j2
         dest: /home/appuser/db_config
         owner: appuser
         group: appuser
+    - name: copy systemd unit
       copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service

@@ -14,10 +14,11 @@
       tags: db-tag
       notify: restart mongod
 
-    - name: Enable puma
+    - name: copy config
       template:
         src: templates/db_config.j2
         dest: /home/appuser/db_config
+    - name: copy systemd unit    
       copy:
         src: files/puma.service
         dest: /etc/systemd/system/puma.service
