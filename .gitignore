@@ -7,3 +7,4 @@
 .terraform/
 *.pdf
 *.retry
+jdauphant.nginx

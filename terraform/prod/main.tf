@@ -23,7 +23,6 @@ module "db" {
   app-subnetwork   = "${module.app-network.app_subnetwork}"
 }
 
-
 module "app" {
   source           = "../modules/app"
   instance_name    = "app"

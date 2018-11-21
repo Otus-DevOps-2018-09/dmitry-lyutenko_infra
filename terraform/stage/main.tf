@@ -33,4 +33,5 @@ module "app" {
   app-network      = "${module.app-network.app_network}"
   app-subnetwork   = "${module.app-network.app_subnetwork}"
   db-address       = "${module.db.db-address}"
+  app_port         = "${var.app_port}"
 }
