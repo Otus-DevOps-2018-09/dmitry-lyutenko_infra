@@ -1,5 +1,4 @@
-db_host: 10.11.12.2
-#db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
+db_host: "{{ hostvars['db']['mongo_bind_ip'] }}"
 nginx_sites:
  default:
      - listen 80

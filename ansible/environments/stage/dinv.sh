@@ -50,7 +50,10 @@ while [[ $# -gt 0 ]]; do
             echo '{"_meta": {"hostvars": {}}}'
             ;;
         *)
+            echo $1
             break
             ;;
     esac
 done
+
+# https://docs.ansible.com/ansible/2.5/dev_guide/developing_inventory.html
