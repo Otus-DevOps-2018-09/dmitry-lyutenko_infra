@@ -10,8 +10,10 @@
     dest: /home/appuser/db_config
     owner: appuser
     group: appuser
-  notify: reload puma  
-- name: Coping puma.service    
+  notify: reload puma
+
+- name: Coping puma.service
+
   copy:
     src: puma.service
     dest: /etc/systemd/system/puma.service
