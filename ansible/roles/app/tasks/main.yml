@@ -4,6 +4,10 @@
   debug:
     msg: "This host is in {{ env }} environment!!!"
 
+- name: debug db_host
+  debug:
+    msg: "DB on hot {{ db_host }}"
+
 - name: Coping config
   template:
     src: db_config.j2

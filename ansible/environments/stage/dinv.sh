@@ -18,6 +18,7 @@ getHostList() {
         --filter="STATUS=RUNNING" | awk '{print "\""$1"\",\""$2"\",\""$3"\""}')
     
     hosts="{\n \"hosts\": [\n"
+    groups="{\n"
     
     meta="  \"_meta\" : {\n    \"hostvars\": {\n"
     
@@ -26,17 +27,19 @@ getHostList() {
      ext_ip=$(echo $el | cut -d ',' -f3)
      int_ip=$(echo $el | cut -d ',' -f2)
      isDB=$(echo $host | grep -q -e "^\"db.*"; echo $?)
-
+     groups=$(echo "$groups  $host: {\n        \"hosts\": [$host]\n  },\n")
      hosts=`echo "$hosts     $host,\n"`
      meta=$(echo "$meta      $host: {\n        \"ansible_host\":  $ext_ip")
      if [ $isDB -eq 0 ]; then
-       meta=$(echo "$meta,\n        \"mongo_bind_ip\": $int_ip\n")
+       meta=$(echo "$meta,\n        \"mongo_bind_ip\": $int_ip")
      fi
      meta=$(echo "$meta\n      },\n")
     done
     hosts=$(echo "$hosts" | sed 's/,\\n$/\\n  ],/')
+    groups=$(echo "$groups" | sed 's/,\\n$/,/')
     meta=$(echo "$meta" | sed 's/,\\n$/\\n    }\\n/')
-    echo -e "$hosts\n$meta  }\n}"
+    #echo -e "$hosts\n$meta  }\n}"
+    echo -e "$groups\n$meta  }\n}"
 }
 
 while [[ $# -gt 0 ]]; do
