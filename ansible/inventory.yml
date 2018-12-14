@@ -1,10 +1,10 @@
-app:
+app_group:
   hosts:
-    appserver:
-      ansible_host: 104.199.130.138
-
-db:
-  hosts:
-    dbserver:
+    app:
       ansible_host: 35.234.6.79
 
+db_group:
+  hosts:
+    db:
+      ansible_host: 35.221.217.164
+      mongo_bind_ip: 10.11.12.3

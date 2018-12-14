@@ -1,5 +1,5 @@
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  name         = "${var.instance_name}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-app"]
@@ -30,7 +30,7 @@ resource "google_compute_instance" "app" {
     agent       = false
     private_key = "${file("${var.private_key_path}")}"
   }
-
+/*
   provisioner "file" {
     source      = "../modules/app/files/puma.service"
     destination = "/tmp/puma.service"
@@ -45,7 +45,7 @@ resource "google_compute_instance" "app" {
   provisioner "remote-exec" {
     script = "../modules/app/files/deploy.sh"
   }
-
+*/
 }
 
 resource "google_compute_firewall" "firewall-puma" {

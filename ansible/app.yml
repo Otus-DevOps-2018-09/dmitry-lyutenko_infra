@@ -1,0 +1,25 @@
+---
+- name: Configure App  
+  hosts: app
+  become: true
+  vars:
+    db_host : "{{ hostvars['db']['mongo_bind_ip'] }}"
+  tasks:
+    
+    - debug: msg="{{ db_host }}"
+    - name: Coping config
+      template:
+        src: templates/db_config.j2
+        dest: /home/appuser/db_config
+        owner: appuser
+        group: appuser
+      notify: reload puma  
+    - name: Coping puma.service    
+      copy:
+        src: files/puma.service
+        dest: /etc/systemd/system/puma.service
+      notify: reload puma
+
+  handlers:
+    - name: reload puma
+      service: name=puma.service state=restarted

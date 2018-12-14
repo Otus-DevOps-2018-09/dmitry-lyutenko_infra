@@ -19,10 +19,6 @@ variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
 
-variable disk_image {
-  description = "Disk image"
-}
-
 variable "instace_count" {
   description = "Number of instances in cluster"
   default     = 1
@@ -31,6 +27,10 @@ variable "instace_count" {
 variable "app_port" {
   default     = 9292
   description = "Firewall and health check port"
+}
+
+variable disk_image {
+  description = "Disk image"
 }
 
 variable app_disk_image {

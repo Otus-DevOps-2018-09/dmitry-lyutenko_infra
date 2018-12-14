@@ -1,5 +1,5 @@
 resource "google_compute_instance" "db" {
-  name         = "reddit-app-db"
+  name         = "${var.instance_name}"
   machine_type = "g1-small"
   zone         = "${var.zone}"
   tags         = ["reddit-db"]
@@ -27,13 +27,14 @@ resource "google_compute_instance" "db" {
     agent       = false
     private_key = "${file("${var.private_key_path}")}"
   }
-
+/*
   provisioner "remote-exec" {
     inline = [
       "sudo sed -i 's/^.*bindIp.*$//' /etc/mongod.conf",
       "sudo systemctl restart mongod.service"
     ]
   }
+*/  
 }
 
 resource "google_compute_firewall" "firewall_mongo" {
