@@ -8,17 +8,5 @@
   debug:
     msg: "DB on hot {{ db_host }}"
 
-- name: Coping config
-  template:
-    src: db_config.j2
-    dest: /home/appuser/db_config
-    owner: appuser
-    group: appuser
-  notify: reload puma
-
-- name: Coping puma.service
-
-  copy:
-    src: puma.service
-    dest: /etc/systemd/system/puma.service
-  notify: reload puma
+- include: ruby.yml
+- include: puma.yml
