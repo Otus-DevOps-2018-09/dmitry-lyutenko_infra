@@ -9,7 +9,7 @@
 *.retry
 jdauphant.nginx
 vault.key
-
+*lint*
 .vagrant/
 *.log
 *.pyc
