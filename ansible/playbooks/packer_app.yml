@@ -3,8 +3,10 @@
   hosts: all
   become: true
   gather_facts: no
-  tasks:
-    - name: Install ruby
-      apt:
-        name: ["ruby-full","ruby-bundler","build-essential"]
-        state: present
+  roles:
+    - app
+#  tasks:
+#    - name: Install ruby
+#      apt:
+#        name: ["ruby-full","ruby-bundler","build-essential"]
+#        state: present
