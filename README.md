@@ -15,7 +15,6 @@
 
 [![Build Status](https://travis-ci.com/Otus-DevOps-2018-09/dmitry-lyutenko_infra.svg?branch=ansible-4)](https://travis-ci.com/Otus-DevOps-2018-09/dmitry-lyutenko_infra)
 
-
 ## PR checklist
  - [X] Выставил label с номером домашнего задания
  - [X] Выставил label с темой домашнего задания
