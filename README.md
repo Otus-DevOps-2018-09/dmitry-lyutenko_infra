@@ -1,3 +1,24 @@
+# Выполнено ДЗ №11
+
+ - [X] Основное ДЗ
+ - [X] Первое задание со звездочкой (nginx)
+ 
+## В процессе сделано:
+
+ - Развернут Vagrant, описана инфраструктура в Vagrant-файле;
+ - Произведен рефакторинг ролей (группировка по task'ам) и параметризация путем применения шаблонов;
+ - Для провижинга ВМ, создаваемых Vagrant'ом, применен ansible;
+ - Установили molecule и testinfra, ознакомились с ними, произвели тестирование роли db при помощи molecule;
+ - Самостоятельно написали тест для роли db при помощи ```testinfra.modules.socket```, проверящий, что mongodb слушает нужный порт;
+ 
+## Build status:
+
+[![Build Status](https://travis-ci.com/Otus-DevOps-2018-09/dmitry-lyutenko_infra.svg?branch=ansible-4)](https://travis-ci.com/Otus-DevOps-2018-09/dmitry-lyutenko_infra)
+
+## PR checklist
+ - [X] Выставил label с номером домашнего задания
+ - [X] Выставил label с темой домашнего задания
+
 # Выполнено ДЗ №10
 
  - [X] Основное ДЗ

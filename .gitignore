@@ -9,3 +9,12 @@
 *.retry
 jdauphant.nginx
 vault.key
+*lint*
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
+*python.apt*
+
